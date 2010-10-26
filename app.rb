@@ -4,8 +4,22 @@ require 'rack/flash'
 
 require 'app/warden'
 require 'app/user'
+require 'slim'
+
+module Sinatra
+  module Templates
+    def slim(template, options={}, locals={})
+      render :slim, template, options, locals
+    end
+  end
+end
 
 class App < Sinatra::Base
+  # Hack so that sinatra-warden uses slim
+  def haml(*options)
+    slim(*options)
+  end
+  
   set :app_file, __FILE__
 
   enable :sessions
@@ -19,10 +33,8 @@ class App < Sinatra::Base
   
   register Sinatra::Warden
   set :auth_failure_path, '/login'
-  
-  set :haml, :format => :html5
 
   get "/" do
-    haml :welcome
+    slim :welcome
   end
 end
