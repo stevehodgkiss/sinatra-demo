@@ -7,13 +7,17 @@ Feature: Home page
     When I go to the home page
     Then I should see "Welcome"
     And I should see "Log in"
-    
+  
+  @wip
   Scenario: Log in correctly
     Given I am on the home page
     When I log in
     Then I should be on the home page
-    And I should not see a personalised welcome message
-    # And I should see "Welcome a@b.com"
+    And show me the page
+    # And I should see a personalised welcome message
+    # Something strange going on here...
+    And I should see "Welcome a@b.com"
+    And I should not see "Welcome a@b.com"
   
   Scenario: Log in incorrectly
     Given I am on the home page
