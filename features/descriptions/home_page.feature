@@ -12,7 +12,7 @@ Feature: Home page
     Given I am on the home page
     When I log in
     Then I should be on the home page
-    And I should not see a personalised welcome message
+    And I should see a personalised welcome message
     # And I should see "Welcome a@b.com"
   
   Scenario: Log in incorrectly
